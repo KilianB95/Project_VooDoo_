@@ -26,4 +26,14 @@ public class PlayerMovement : MonoBehaviour
             _isGrounded = true;
         }
     }
+
+    public Vector3 GetJumpForce()
+    {
+        return _jumpForce;
+    }
+
+    public void SetJumpForce(Vector3 tempForce)
+    {
+        _jumpForce = tempForce;
+    }
 }
