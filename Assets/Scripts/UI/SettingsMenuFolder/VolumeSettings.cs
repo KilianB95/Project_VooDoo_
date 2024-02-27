@@ -14,7 +14,7 @@ public class VolumeSettings : MonoBehaviour
 
     // deze functie zorgt er voor dat de value dat verandered is met de slider word opgeslagen in een playerpref
     //zit nog een error in de ToString
-    //scriptis nog niet gelinked
+    //script is nog niet gelinked
     public void VolumeSliderController() => volumeTextUI.text = volumeTextUI.ToString("100.0");
 
     private void SaveVolume(float volume)
