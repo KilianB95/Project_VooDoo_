@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//script is gelinked aan de empty object "SoundValue"
 public class VolumeSettings : MonoBehaviour
 {
     [SerializeField] private Slider _volumeSetting;
@@ -14,8 +15,6 @@ public class VolumeSettings : MonoBehaviour
     }
 
     // deze functie zorgt er voor dat de value dat verandered is met de slider word opgeslagen in een playerpref
-    //zit nog een error in de ToString
-    //script is nog niet gelinked
     public void VolumeSliderController(float volume) => _volumeTextUI.text = volume.ToString("100.0");
 
     private void SaveVolume(float volume)
