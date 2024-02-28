@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class VolumeSettings : MonoBehaviour
 {
     [SerializeField] private Slider _volumeSetting;
-    [SerializeField] private Text _volumeTextUI;
+    [SerializeField] private TMP_Text _volumeTextUI;
 
     private void Start()
     {
