@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 1946674652}
   - component: {fileID: 1946674651}
   m_Layer: 5
-  m_Name: HowToPlay
+  m_Name: HowToPlay-Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
