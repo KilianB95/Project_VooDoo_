@@ -17,11 +17,21 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("TestSettingsScene");
     }
+
+    public void CloseSettings()
+    {
+        SceneManager.LoadScene("TestMainMenuUI");
+    }
     //deze functie zorgt er voor dat de scene voor de HowToPlay geload word.
     //script component zit aan de empty gameobject "MainMenu" gelinkt.
     //de functie word opgeroepen inde onclick event van de button "HowToPlay - Button".
     public void OpenHowToPlay()
     {
         SceneManager.LoadScene("TestHowToPlayScene");
+    }
+
+    public void CloseHowToPlay()
+    {
+        SceneManager.LoadScene("TestMainMenuUI");
     }
 }
