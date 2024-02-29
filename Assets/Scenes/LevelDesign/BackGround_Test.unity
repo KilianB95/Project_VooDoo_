@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 41737536}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.86, y: -3.54, z: 10}
+  m_LocalPosition: {x: 10.8, y: -6.56, z: 10}
   m_LocalScale: {x: 0.91556, y: 0.83191, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a44175e2bbec2488408bc4a2c67ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 694593153}
+  _camera: {fileID: 480810832}
   _parralaxEffect: 1
 --- !u!1 &480810832
 GameObject:
@@ -249,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 480810832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 8.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a44175e2bbec2488408bc4a2c67ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 694593153}
-  _parralaxEffect: 1.2
+  _camera: {fileID: 480810832}
+  _parralaxEffect: 1
 --- !u!212 &601640003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -443,7 +443,7 @@ Transform:
   m_GameObject: {fileID: 694593153}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -5.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -495,8 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a44175e2bbec2488408bc4a2c67ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 694593153}
-  _parralaxEffect: 1
+  _camera: {fileID: 480810832}
+  _parralaxEffect: 0.7
 --- !u!212 &784957150
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -659,8 +659,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475385247}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.67, y: -1, z: 10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a44175e2bbec2488408bc4a2c67ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 694593153}
+  _camera: {fileID: 480810832}
   _parralaxEffect: 0.3
 --- !u!212 &1475385250
 SpriteRenderer:
@@ -855,7 +855,7 @@ Transform:
   m_GameObject: {fileID: 1559290108}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.05, y: 1.59, z: 10}
+  m_LocalPosition: {x: 2.8, y: 6.9, z: 10}
   m_LocalScale: {x: 1.064625, y: 0.84542, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a44175e2bbec2488408bc4a2c67ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 694593153}
+  _camera: {fileID: 480810832}
   _parralaxEffect: 0.7
 --- !u!1 &1877299482
 GameObject:
@@ -974,8 +974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a44175e2bbec2488408bc4a2c67ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 694593153}
-  _parralaxEffect: 1.2
+  _camera: {fileID: 480810832}
+  _parralaxEffect: 1
 --- !u!212 &1877299485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1157,8 +1157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a44175e2bbec2488408bc4a2c67ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 694593153}
-  _parralaxEffect: 1
+  _camera: {fileID: 480810832}
+  _parralaxEffect: 0.7
 --- !u!212 &2102806773
 SpriteRenderer:
   m_ObjectHideFlags: 0

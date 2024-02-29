@@ -5,9 +5,9 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
      public static ObjectPool _sharedInstance;
-     public List<GameObject> _objectPool;
-     public GameObject _objectToPool;
-     public int _poolAmount;
+     [SerializeField] private List<GameObject> _objectPool;
+     [SerializeField] private GameObject _objectToPool;
+     [SerializeField] private int _poolAmount;
 
      void Awake()
     {
