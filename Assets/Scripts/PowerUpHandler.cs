@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUpHandler : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private BombEffect _bomb;
     [SerializeField] private int _jumpMulitplier;
 
     private PowerUp _powerUp;
@@ -15,6 +16,7 @@ public class PowerUpHandler : MonoBehaviour
     private void Awake()
     {
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
+        _bomb = this.gameObject.GetComponent<BombEffect>();
     }
 
     private void Update()
@@ -38,6 +40,10 @@ public class PowerUpHandler : MonoBehaviour
                     _playerMovement.SetJumpForce(_playerMovement.GetJumpForce() * _jumpMulitplier);
                     ManagePowerUpDuration(); //Zet automatisch de juiste duration in _powerupDuration
                     return;
+                case "BombPowerup":
+                    _bomb.SetBomb(true);
+                    ManagePowerUpDuration();
+                    return;
             }
         }
     }
@@ -54,6 +60,9 @@ public class PowerUpHandler : MonoBehaviour
         {
             case "HeightPowerup":
                 _playerMovement.SetJumpForce(_playerMovement.GetJumpForce() / _jumpMulitplier);
+                return;
+            case "BombPowerup":
+                _bomb.SetBomb(false);
                 return;
         }
     }
