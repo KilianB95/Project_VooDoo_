@@ -8,6 +8,7 @@ public class PowerUpHandler : MonoBehaviour
     [SerializeField] private BombEffect _bomb;
     [SerializeField] private int _jumpMulitplier;
 
+
     private PowerUp _powerUp;
     private string _powerupTag;
     private float _powerupDuration;

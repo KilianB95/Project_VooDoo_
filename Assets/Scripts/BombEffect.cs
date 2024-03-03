@@ -3,15 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PowerUpHandler))]
+[RequireComponent(typeof(Rigidbody))]
 public class BombEffect : MonoBehaviour
 {
+    [SerializeField] private bool _drawRadiusGizmo; //Debug bool
+    [SerializeField] private Vector3 _throwForce; //Gebruik Y en Z waardes
+    [SerializeField] private float _blastRadius;
+    private float _fuseTime;
+    private float _bombFuse;
     private bool _hasBomb;
+    private GameObject _bomb;
+    private Rigidbody _bombRB;
+
+    private void Awake()
+    {
+        if (!_bomb)
+            _bomb = GameObject.Find("Bomb");
+        _bombRB = _bomb.GetComponent<Rigidbody>();
+        Physics.IgnoreCollision(_bomb.GetComponent<SphereCollider>(), this.gameObject.GetComponent<BoxCollider>(), true); //Negeer collision tussen de bom en de speler
+
+    }
 
     private void Update()
     {
-        if (_hasBomb && Input.GetKey(KeyCode.LeftControl))
+        if (_hasBomb && Input.GetKey(KeyCode.RightControl))
         {
             ThrowBomb();
+        }
+
+        if (Time.time >= _bombFuse) // isThrown variabele
+        {
+            ExplodeBomb();
         }
     }
 
@@ -27,9 +49,41 @@ public class BombEffect : MonoBehaviour
 
     private void ThrowBomb()
     {
-        // TODO:
-        // Gooi een bom met een boog, object pooling onnodig want er is maar 1 bom per keer die herbruikt kan worden.
+        _bomb.SetActive(true);
+        _bomb.transform.position = this.gameObject.transform.position;
+        _bombRB.AddForce(_throwForce);
+        _bombRB.mass += _bombRB.mass * 0.1f;
+        _bombFuse = Time.time + _fuseTime;
+    }
 
-        _hasBomb = false;
+    private void ExplodeBomb()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(_bomb.transform.position, _blastRadius); //Zet elke collider die geraakt wordt in de blast radius in een array
+
+        foreach (var hitCollider in hitColliders) // Zet alle objecten hierin uit en verplaats ze terug naar de object pool positie
+        {
+            // TODO:
+            // Zet alle objecten hierin uit en verplaats ze terug naar de object pool positie
+            // Maak if-statement om bepaalde tags te checken, bijvoorbeeld "player", "background", of "ground". Kan ook een check zijn voor "poolable object" o.i.d
+        }
+
+        ResetBomb();
+    }
+
+    private void ResetBomb()
+    {
+        _bombRB.mass = 1;
+        // Voeg positie toe
+        // _bomb.transform.position = ;
+        _bomb.SetActive(false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_drawRadiusGizmo)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(_bomb.transform.position, _blastRadius);
+        }
     }
 }

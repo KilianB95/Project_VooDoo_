@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - HeightPowerup
+  - BombPowerup
   layers:
   - Default
   - TransparentFX

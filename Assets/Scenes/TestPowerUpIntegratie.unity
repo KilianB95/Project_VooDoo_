@@ -229,9 +229,12 @@ GameObject:
   - component: {fileID: 1007867563}
   - component: {fileID: 1007867562}
   - component: {fileID: 1007867561}
+  - component: {fileID: 1007867565}
+  - component: {fileID: 1007867566}
+  - component: {fileID: 1007867567}
   m_Layer: 0
   m_Name: BombPowerup
-  m_TagString: Untagged
+  m_TagString: BombPowerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,7 +309,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007867560}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1007867564
 Transform:
   m_ObjectHideFlags: 0
@@ -316,12 +319,65 @@ Transform:
   m_GameObject: {fileID: 1007867560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.7287226, y: 4.42699, z: 25.633543}
+  m_LocalPosition: {x: 3.92, y: 4.42699, z: -0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1007867565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007867560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c778dea1bbff7ae419f5d81fd0eba216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &1007867566
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007867560}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &1007867567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007867560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7990251748acdd64d9573c05845982dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _powerupDuration: 10
+  _powerupIcon: {fileID: 0}
 --- !u!1 &1232081632
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +390,7 @@ GameObject:
   - component: {fileID: 1232081635}
   - component: {fileID: 1232081634}
   - component: {fileID: 1232081633}
+  - component: {fileID: 1232081637}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -421,12 +478,39 @@ Transform:
   m_GameObject: {fileID: 1232081632}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.18, y: 5.51, z: 0}
+  m_LocalPosition: {x: 7.93, y: 13.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1232081637
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232081632}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 2
+  m_CollisionDetection: 0
 --- !u!1 &1255876282
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,9 +631,10 @@ GameObject:
   - component: {fileID: 1381408075}
   - component: {fileID: 1381408074}
   - component: {fileID: 1381408076}
+  - component: {fileID: 1381408077}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,7 +779,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 0}
+  _bomb: {fileID: 0}
   _jumpMulitplier: 2
+--- !u!114 &1381408077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381408069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6349559cf83d3489b13566e0e9fdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drawRadiusGizmo: 0
+  _blastRadius: 3
+  _bomb: {fileID: 1232081632}
+  _bombRB: {fileID: 0}
+  _throwForce: {x: 0, y: 25, z: 15}
 --- !u!1 &1622414385
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,5 +898,5 @@ SceneRoots:
   - {fileID: 1622414388}
   - {fileID: 1255876286}
   - {fileID: 1381408073}
-  - {fileID: 1232081636}
   - {fileID: 1007867564}
+  - {fileID: 1232081636}
