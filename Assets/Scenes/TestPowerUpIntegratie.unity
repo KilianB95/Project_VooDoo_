@@ -794,10 +794,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _drawRadiusGizmo: 0
+  _throwForce: {x: 0, y: 500, z: 200}
   _blastRadius: 3
+  _fuseTime: 1.5
   _bomb: {fileID: 1232081632}
-  _bombRB: {fileID: 0}
-  _throwForce: {x: 0, y: 25, z: 15}
 --- !u!1 &1622414385
 GameObject:
   m_ObjectHideFlags: 0

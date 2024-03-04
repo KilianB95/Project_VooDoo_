@@ -9,19 +9,20 @@ public class BombEffect : MonoBehaviour
     [SerializeField] private bool _drawRadiusGizmo; //Debug bool
     [SerializeField] private Vector3 _throwForce; //Gebruik Y en Z waardes
     [SerializeField] private float _blastRadius;
-    private float _fuseTime;
+    [SerializeField] private float _fuseTime;
     private float _bombFuse;
     private bool _hasBomb;
-    private GameObject _bomb;
+    [SerializeField] private GameObject _bomb;
     private Rigidbody _bombRB;
 
     private void Awake()
     {
         if (!_bomb)
             _bomb = GameObject.Find("Bomb");
+
         _bombRB = _bomb.GetComponent<Rigidbody>();
         Physics.IgnoreCollision(_bomb.GetComponent<SphereCollider>(), this.gameObject.GetComponent<BoxCollider>(), true); //Negeer collision tussen de bom en de speler
-
+        _bomb.SetActive(false);
     }
 
     private void Update()
@@ -29,11 +30,17 @@ public class BombEffect : MonoBehaviour
         if (_hasBomb && Input.GetKey(KeyCode.RightControl))
         {
             ThrowBomb();
+            _hasBomb = false;
         }
 
-        if (Time.time >= _bombFuse) // isThrown variabele
+        if (Time.time >= _bombFuse && _bomb.activeInHierarchy)
         {
             ExplodeBomb();
+        }
+
+        if (_bomb.activeInHierarchy)
+        {
+            _bombRB.mass += 0.01f; //Pas dit nummer aan als je wilt dat de bom een kortere boog wilt hebben
         }
     }
 
@@ -42,17 +49,11 @@ public class BombEffect : MonoBehaviour
         _hasBomb = tempBomb;
     }
 
-    public bool GetBomb()
-    {
-        return _hasBomb;
-    }
-
     private void ThrowBomb()
     {
-        _bomb.SetActive(true);
         _bomb.transform.position = this.gameObject.transform.position;
+        _bomb.SetActive(true);
         _bombRB.AddForce(_throwForce);
-        _bombRB.mass += _bombRB.mass * 0.1f;
         _bombFuse = Time.time + _fuseTime;
     }
 
