@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _powerupHandler = this.gameObject.GetComponent<PowerUpHandler>();
+        _playerRB = this.gameObject.GetComponent<Rigidbody>();
         _jumpForceMax = _jumpForce * _powerupHandler.GetJumpMultiplier();
     }
 
