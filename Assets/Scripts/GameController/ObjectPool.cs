@@ -14,6 +14,8 @@ public class ObjectPool : MonoBehaviour
         _sharedInstance = this;
     }
 
+    //Vanaf het begin voordat de game start worden de objecten buiten de scene geinstantieerd.
+    //Ze staan op False en worden pas op true gezet wanneer hun functie wordt uitgevoerd.
      void Start()
     {
         _objectPool = new List<GameObject>();
@@ -26,6 +28,8 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    //De objecten worden zichtbaar in de hierachie en staan op false.
+    //Plus doe hoeveelheid er is aangegeven hoeveel objecten er in moeten staan.
     public GameObject GetPooledObjects()
     {
         for(int i = 0; i < _poolAmount; i++)
