@@ -12,7 +12,6 @@ public class PlayerProperties : MonoBehaviour
     private int _score;
     private int _highScore;
     private bool _isAlive;
-    private bool _newHighScore;
 
     private void Awake()
     {
@@ -59,7 +58,6 @@ public class PlayerProperties : MonoBehaviour
 
         if (_score > _highScore)
         {
-            _newHighScore = true;
             //SetHighScore();
         }
     }
