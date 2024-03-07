@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!_isGrounded && collision.gameObject.tag == "Ground")
+        if (!_isGrounded && collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
         }
@@ -48,8 +48,6 @@ public class PlayerMovement : MonoBehaviour
         _jumpForce = tempForce;
 
         if (_jumpForce.y > _jumpForceMax.y) //Zet een limiet aan jumpforce
-        {
             _jumpForce.y = _jumpForceMax.y;
-        }
     }
 }

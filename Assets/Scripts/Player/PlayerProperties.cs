@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerProperties : MonoBehaviour
@@ -10,12 +9,17 @@ public class PlayerProperties : MonoBehaviour
     private float _distanceRan;
     private int _collectedCoins;
     private int _hitsToTake;
+    private int _score;
+    private int _highScore;
     private bool _isAlive;
+    private bool _newHighScore;
 
     private void Awake()
     {
         _distanceRan = 0;
         _collectedCoins = 0;
+        _hitsToTake = 0;
+        _score = 0;
         _isAlive = true;
     }
 
@@ -24,10 +28,14 @@ public class PlayerProperties : MonoBehaviour
         Debug.Log(GetDistance());
         if (_isAlive)
         {
-            _timeMultiplier = Time.time * 0.002f; //Maak hier mogelijk een ternary operator van om een aantal mijlpalen te hebben waar de multiplier minder wordt
+            //Maak hier mogelijk een ternary operator van om een aantal mijlpalen te hebben waar de multiplier minder wordt. Misschien werken met parallax snelheid?
+            _timeMultiplier = Time.time * 0.002f;
 
             _distanceRan += _metersPerSecond * _timeMultiplier;
         }
+
+        if (!_isAlive)
+            CalculateScore();
     }
 
     public float GetDistance()
@@ -45,16 +53,26 @@ public class PlayerProperties : MonoBehaviour
         _hitsToTake = tempHits;
     }
 
+    private void CalculateScore()
+    {
+        _score = (int) _distanceRan + (_collectedCoins * 10); //Mogelijk nog punten geven voor aantal Power-Ups opgepakt
+
+        if (_score > _highScore)
+        {
+            _newHighScore = true;
+            //SetHighScore();
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Coin"))
-        {
-            _collectedCoins += 1;
-        }
+            _collectedCoins++;
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             _isAlive = (_hitsToTake > 0);
+
             if (_hitsToTake > 0)
                 --_hitsToTake;
         }
