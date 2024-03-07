@@ -55,7 +55,8 @@ public class PlayerProperties : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             _isAlive = (_hitsToTake > 0);
-            _hitsToTake = _hitsToTake > 0 ? 0 : 1;
+            if (_hitsToTake > 0)
+                --_hitsToTake;
         }
     }
 }
