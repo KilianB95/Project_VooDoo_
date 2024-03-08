@@ -4,39 +4,23 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _obstacle;
+    [SerializeField] private float _timeToSpawn = 5f;
+    private float _timeSinceSpawn;
+    private ObjectPooling _objectPool;
 
-    [SerializeField] private float _spawnTimer, _spawnCountDown;
-
-    //Dit is de countdown voordat er een entitie wordt ingespawned.
     private void Start()
     {
-        _spawnCountDown = _spawnTimer;
+        _objectPool = FindObjectOfType<ObjectPooling>();
     }
 
-    //Wanneer de countdown 0 is worden de obstacles ingespawned.
-    //Nadat ze ingespawned zijn komen zij op de locatie waar de spawner is ingesteld
     private void Update()
     {
-        _spawnCountDown -= Time.deltaTime;
-
-        if(_spawnCountDown < 0)
+        _timeSinceSpawn += Time.deltaTime;
+        if(_timeSinceSpawn >= _timeToSpawn)
         {
-            _spawnCountDown = Time.deltaTime;
-
-            GameObject obstacle = ObjectPool._sharedInstance.GetPooledObjects();
-            if(obstacle != null )
-            {
-                obstacle.transform.position = transform.position;
-                obstacle.transform.rotation = transform.rotation;
-                obstacle.SetActive(true);
-            }
+            GameObject newObstacle = _objectPool.GetObstacle();
+            newObstacle.transform.position = this.transform.position;
+            _timeSinceSpawn = 0f;
         }
-    }
-
-    //Als de obstacle door de collision heeft met de collider wordt het object op false gezet.
-    private void OnCollisionEnter(Collision collision)
-    {
-        gameObject.SetActive(false);
     }
 }
