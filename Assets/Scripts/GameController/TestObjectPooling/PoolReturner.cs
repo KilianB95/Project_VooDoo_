@@ -11,11 +11,10 @@ public class PoolReturner : MonoBehaviour
         _objectPool = FindObjectOfType<ObjectPooling>();
     }
 
-    private void OnDisable()
+    private void OnTriggerEnter(Collider other)
     {
-        {
-            if (_objectPool != null)
-                _objectPool.ReturnObstacle(this.gameObject);
-        }
+        Debug.Log("Hit");
+        if (_objectPool != null)
+            _objectPool.ReturnObstacle(other.gameObject);
     }
 }
