@@ -1,31 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpHandler : MonoBehaviour
 {
+    [SerializeField] private PlayerProperties _playerProperties;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private BombEffect _bomb;
     [SerializeField] private int _jumpMulitplier;
-
+    [SerializeField] private Sprite _powerupNeutralSprite;
 
     private PowerUp _powerUp;
     private string _powerupTag;
-    private float _powerupDuration;
     private bool _powerupActive = false;
+    private float _powerupTimeLeft;
+    private Image _powerupSpriteUI;
+    [SerializeField] private Slider _powerupSlider;
 
     private void Awake()
     {
+        if (!_playerProperties)
+            _playerProperties = this.gameObject.GetComponent<PlayerProperties>();
+
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         _bomb = this.gameObject.GetComponent<BombEffect>();
+        _powerupSlider = GameObject.Find("PowerupSlider").GetComponent<Slider>();
+        _powerupSpriteUI = GameObject.Find("CenterArea").GetComponent<Image>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (Time.time >= _powerupDuration && _powerupActive)
+
+        if (_powerupTimeLeft > 0)
         {
-            ReversePowerUp();
+            Debug.Log(_powerupTimeLeft);
+            _powerupTimeLeft -= Time.deltaTime;
+            _powerupSlider.value = Mathf.InverseLerp(0, _powerUp.GetDuration(), _powerupTimeLeft);
         }
+
+        if (_powerupTimeLeft <= 0 && _powerupActive)
+            ReversePowerUp();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -45,17 +60,26 @@ public class PowerUpHandler : MonoBehaviour
                     _bomb.SetBomb(true);
                     ManagePowerUpDuration();
                     return;
+                case "HitPowerup":
+                    _playerProperties.SetHits(1);
+                    return;
             }
         }
     }
 
     private void ManagePowerUpDuration()
     {
-        _powerupDuration = Time.time + _powerUp.GetDuration();
+        _powerupTimeLeft = _powerUp.GetDuration();
+        _powerupSpriteUI.sprite = _powerUp.GetIcon();
+        _powerupSpriteUI.color = Color.white;
     }
 
+    // HitPowerup hoeft niet omgedraaid te worden
     private void ReversePowerUp()
     {
+        _powerupTimeLeft = 0;
+        _powerupSpriteUI.sprite = _powerupNeutralSprite;
+        _powerupSpriteUI.color = Color.black;
         _powerupActive = false;
         switch (_powerupTag)
         {

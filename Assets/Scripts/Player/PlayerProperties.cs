@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BombEffect))]
+[RequireComponent(typeof(PowerUpHandler))]
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerProperties : MonoBehaviour
 {
     [SerializeField] private float _metersPerSecond;
@@ -57,9 +61,7 @@ public class PlayerProperties : MonoBehaviour
         _score = (int) _distanceRan + (_collectedCoins * 10); //Mogelijk nog punten geven voor aantal Power-Ups opgepakt
 
         if (_score > _highScore)
-        {
-            //SetHighScore();
-        }
+            _highScore = _score;
     }
 
     private void OnCollisionEnter(Collision collision)
