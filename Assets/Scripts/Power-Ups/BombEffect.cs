@@ -15,15 +15,15 @@ public class BombEffect : MonoBehaviour
     [SerializeField] private GameObject _bomb;
     private Rigidbody _bombRB;
 
-    private void Awake()
+   /* private void Awake()
     {
         if (!_bomb)
             _bomb = GameObject.Find("Bomb");
 
-        _bombRB = _bomb.GetComponent<Rigidbody>();
+        //_bombRB = _bomb.GetComponent<Rigidbody>();
         Physics.IgnoreCollision(_bomb.GetComponent<SphereCollider>(), this.gameObject.GetComponent<BoxCollider>(), true); //Negeer collision tussen de bom en de speler
         _bomb.SetActive(false);
-    }
+    } */
 
     private void Update()
     {

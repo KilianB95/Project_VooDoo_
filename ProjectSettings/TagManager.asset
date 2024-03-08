@@ -7,7 +7,7 @@ TagManager:
   - Ground
   - HeightPowerup
   - BombPowerup
-  - HitPowerup
+  - Obstacle
   layers:
   - Default
   - TransparentFX

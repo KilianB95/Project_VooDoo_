@@ -18,16 +18,16 @@ public class PowerUpHandler : MonoBehaviour
     private Image _powerupSpriteUI;
     [SerializeField] private Slider _powerupSlider;
 
-    private void Awake()
+   /* private void Awake()
     {
         if (!_playerProperties)
             _playerProperties = this.gameObject.GetComponent<PlayerProperties>();
 
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         _bomb = this.gameObject.GetComponent<BombEffect>();
-        _powerupSlider = GameObject.Find("PowerupSlider").GetComponent<Slider>();
+        //_powerupSlider = GameObject.Find("PowerupSlider").GetComponent<Slider>();
         _powerupSpriteUI = GameObject.Find("CenterArea").GetComponent<Image>();
-    }
+    } */
 
     private void FixedUpdate()
     {

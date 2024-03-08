@@ -30,7 +30,7 @@ public class ObjectPool : MonoBehaviour
 
     //De objecten worden zichtbaar in de hierachie en staan op false.
     //Plus doe hoeveelheid er is aangegeven hoeveel objecten er in moeten staan.
-    public GameObject GetPooledObjects()
+    public GameObject GetPooledObjects(GameObject gameObject)
     {
         for(int i = 0; i < _poolAmount; i++)
         {

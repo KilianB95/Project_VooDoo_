@@ -66,7 +66,7 @@ public class PlayerProperties : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Coin"))
+      /*  if (collision.gameObject.CompareTag("Coin"))
             _collectedCoins++;
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -75,6 +75,6 @@ public class PlayerProperties : MonoBehaviour
 
             if (_hitsToTake > 0)
                 --_hitsToTake;
-        }
+        } */
     }
 }
