@@ -18,18 +18,20 @@ public class AdScript : MonoBehaviour
 
     private void Awake()
     {
-        _adActive = false;
-        _adTimeLeft = 0;
-        _adImageObject.SetActive(false);
-
         if (!_adImageObject)
             _adImageObject = GameObject.Find("Ad");
+
+        _adImageSprite = _adImageObject.GetComponent<Image>();
 
         if (!_player)
             _player = GameObject.Find("Player").GetComponent<PlayerProperties>();
 
         if(!_adDurationSlider)
             _adDurationSlider = GameObject.Find("Slider").GetComponent<Slider>();
+
+        _adActive = false;
+        _adTimeLeft = 0;
+        _adImageObject.SetActive(false);
     }
 
     private void FixedUpdate()
