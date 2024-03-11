@@ -5,22 +5,25 @@ using UnityEngine.UI;
 
 public class AdScript : MonoBehaviour
 {
-    private GameObject _adImage;
     private PlayerProperties _player;
-    private float _adTimeLeft;
+
+    private GameObject _adImageObject;
+    private Image _adImageSprite;
+    [SerializeField] private Sprite[] _adImages;
     private bool _adActive;
+    
+    private float _adTimeLeft;
     [SerializeField] private float _adDuration;
     [SerializeField] private Slider _adDurationSlider;
 
     private void Awake()
     {
         _adActive = false;
-
         _adTimeLeft = 0;
-        if (!_adImage)
-            _adImage = GameObject.Find("Ad");
+        _adImageObject.SetActive(false);
 
-        _adImage.SetActive(false);
+        if (!_adImageObject)
+            _adImageObject = GameObject.Find("Ad");
 
         if (!_player)
             _player = GameObject.Find("Player").GetComponent<PlayerProperties>();
@@ -31,27 +34,25 @@ public class AdScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (!_player.CheckIfAlive() && !_adActive) // Werkt niet (God haat mij)
+        if (!_player.CheckIfAlive() && !_adActive) //Als speler doodgaat, activeer ad UI element en pak een willekeurige ad sprite
         {
-            _adImage.SetActive(true);
+            _adImageObject.SetActive(true);
+            _adImageSprite.sprite = _adImages[Random.Range(0, _adImages.Length + 1)];
             _adTimeLeft = _adDuration;
             _adActive = true;
         }
 
-        if (_adTimeLeft > 0 && _adActive)
+        if (_adActive) //Wanneer een advertentie actief is
         {
             _adTimeLeft -= Time.deltaTime;
             _adDurationSlider.value = Mathf.InverseLerp(0, _adDuration, _adTimeLeft);
         }
             
-        if (_adTimeLeft < 0 && _adActive)
+        if (_adTimeLeft < 0 && _adActive) //Wanneer een advertentie actief is en de tijd om is
         {
             _player.SetIfAlive(true);
-            _adImage.SetActive(false);
+            _adImageObject.SetActive(false);
             _adActive = false;
         }
-
-        // _adTimeLeft = (_adTimeLeft > 0) ? _adTimeLeft -= Time.deltaTime : _adTimeLeft;
     }
 }
