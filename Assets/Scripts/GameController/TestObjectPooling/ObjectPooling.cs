@@ -7,7 +7,7 @@ public class ObjectPooling : MonoBehaviour
 {
     [SerializeField] private GameObject _obstaclePrefab;
     [SerializeField] private Queue<GameObject> _obstaclePool = new Queue<GameObject>();
-    [SerializeField] private int _poolStartSize = 15;
+    [SerializeField] private int _poolStartSize = 150; 
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +28,11 @@ public class ObjectPooling : MonoBehaviour
             obstacle.SetActive(true);
             return obstacle;
         }
-        else
+        else 
         {
             GameObject obstacle = Instantiate(_obstaclePrefab);
+            _obstaclePool.Enqueue(obstacle);
+            obstacle.SetActive(false);
             return obstacle;
         }
     }
