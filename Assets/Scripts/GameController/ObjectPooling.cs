@@ -7,9 +7,9 @@ public class ObjectPooling : MonoBehaviour
 {
     [SerializeField] private GameObject _obstaclePrefab;
     [SerializeField] private Queue<GameObject> _obstaclePool = new Queue<GameObject>();
-    [SerializeField] private int _poolStartSize = 15;
+    [SerializeField] private int _poolStartSize = 150;  
 
-    // Start is called before the first frame update
+    //Wanneer de game start maakt hij de hoeveelheid objecten aan doormiddel van de _poolStartSize.
     void Start()
     {
         for (int i = 0; i < _poolStartSize; i++)
@@ -20,6 +20,7 @@ public class ObjectPooling : MonoBehaviour
         }   
     }
 
+    // Vanaf hier maakt die de objecten true en spawnen ze in.
     public GameObject GetObstacle()
     {
         if (_obstaclePool.Count > 0)
@@ -28,13 +29,16 @@ public class ObjectPooling : MonoBehaviour
             obstacle.SetActive(true);
             return obstacle;
         }
-        else
+        else 
         {
             GameObject obstacle = Instantiate(_obstaclePrefab);
+            _obstaclePool.Enqueue(obstacle);
+            obstacle.SetActive(true);
             return obstacle;
         }
     }
 
+    //Als de object door de destbetreffende collision/collider gaat dan wordt t false.
     public void ReturnObstacle(GameObject collison)
     { 
         collison.SetActive(false); 
