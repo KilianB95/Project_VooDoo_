@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,20 +8,20 @@ public static class LeaderBoard
     public struct ScoreEntry 
     { 
         public string name; 
-        public int Score; 
+        public int score; 
 
         public ScoreEntry(string name, int score)
         {
             this.name = name;
-            this.Score = score;
+            this.score = score;
         }
     }
 
     private static List<ScoreEntry> _s_Entries;
 
     private static List<ScoreEntry> Entries 
-    {  
-        get 
+    {
+        get
         { 
             if( _s_Entries == null)
             {
@@ -36,7 +35,7 @@ public static class LeaderBoard
 
     private static void SortScores()
     {
-        _s_Entries.Sort((a, b) => b.Score.CompareTo(a.Score));
+        _s_Entries.Sort((a, b) => b.score.CompareTo(a.score));
     }
 
     private static void LoadScores()
@@ -50,5 +49,29 @@ public static class LeaderBoard
             _entry.score = PlayerPrefs.GetInt(PlayerPrefsBaseKey + "[" + i + "].score", 0);
             _s_Entries.Add(_entry);
         }
+        SortScores();
+    }
+
+    private static void SaveScores()
+    {
+        for(int i = 0;i < EntryCount; i++)
+        {
+            var _entry = _s_Entries[i];
+            PlayerPrefs.SetString(PlayerPrefsBaseKey + "[" + i + "].name", _entry.name);
+            PlayerPrefs.SetInt(PlayerPrefsBaseKey + "[" + i + "].name", _entry.score);
+        }
+    }
+
+    public static ScoreEntry GetEntry(int index)
+    {
+        return Entries[index];
+    }
+
+    public static void Record(string name, int score)
+    {
+        Entries.Add(new ScoreEntry(name, score));
+        SortScores();
+        Entries.RemoveAt(Entries.Count - 1);
+        SaveScores();
     }
 }
