@@ -28,7 +28,6 @@ public class PlayerProperties : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(GetDistance());
         if (_isAlive)
         {
             //Maak hier mogelijk een ternary operator van om een aantal mijlpalen te hebben waar de multiplier minder wordt. Misschien werken met parallax snelheid?
@@ -37,13 +36,7 @@ public class PlayerProperties : MonoBehaviour
             _distanceRan += _metersPerSecond * _timeMultiplier;
         }
 
-        if (!_isAlive)
-            CalculateScore();
-    }
-
-    public float GetDistance()
-    {
-        return Mathf.RoundToInt(_distanceRan);
+        CalculateScore();
     }
 
     public int GetCoins()
@@ -62,6 +55,16 @@ public class PlayerProperties : MonoBehaviour
 
         if (_score > _highScore)
             _highScore = _score;
+    }
+
+    public int GetScore()
+    {
+        return _score;
+    }
+
+    public int GetHighScore()
+    {
+        return _highScore;
     }
 
     private void OnCollisionEnter(Collision collision)
