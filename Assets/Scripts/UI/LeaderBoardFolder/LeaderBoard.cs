@@ -27,7 +27,9 @@ public static class LeaderBoard
             {
                 _s_Entries = new List<ScoreEntry>();
                 LoadScores();
-            }      
+            }
+
+            return _s_Entries;
         } 
     }
 
