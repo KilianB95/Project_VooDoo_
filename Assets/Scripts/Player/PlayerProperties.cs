@@ -28,7 +28,6 @@ public class PlayerProperties : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(GetDistance());
         if (_isAlive)
         {
             //Maak hier mogelijk een ternary operator van om een aantal mijlpalen te hebben waar de multiplier minder wordt. Misschien werken met parallax snelheid?
