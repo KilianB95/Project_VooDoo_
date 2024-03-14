@@ -38,9 +38,10 @@ public class ObjectPooling : MonoBehaviour
         }
     }
 
-    //Als de object door de destbetreffende collision/collider gaat dan wordt t false.
+    //Als de object door de destbetreffende collision/collider gaat dan wordt t false en gaat terug in de queue.
     public void ReturnObstacle(GameObject collison)
-    { 
-        collison.SetActive(false); 
+    {
+        _obstaclePool.Enqueue(collison);
+        collison.SetActive(false);
     }
 }
