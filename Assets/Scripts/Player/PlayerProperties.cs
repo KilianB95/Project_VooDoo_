@@ -49,6 +49,15 @@ public class PlayerProperties : MonoBehaviour
         _hitsToTake = tempHits;
     }
 
+    public bool CheckIfAlive()
+    {
+        return _isAlive;
+    }
+    public void SetIfAlive(bool tempAlive)
+    {
+        _isAlive = tempAlive;
+    }
+
     private void CalculateScore()
     {
         _score = (int) _distanceRan + (_collectedCoins * 10); //Mogelijk nog punten geven voor aantal Power-Ups opgepakt
