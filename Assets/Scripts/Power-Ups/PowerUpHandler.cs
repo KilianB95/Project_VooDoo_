@@ -8,7 +8,7 @@ public class PowerUpHandler : MonoBehaviour
     [SerializeField] private PlayerProperties _playerProperties;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private BombEffect _bomb;
-    [SerializeField] private int _jumpMulitplier;
+    [SerializeField] private int _jumpMultiplier;
     [SerializeField] private Sprite _powerupNeutralSprite;
 
     private PowerUp _powerUp;
@@ -53,7 +53,7 @@ public class PowerUpHandler : MonoBehaviour
             switch (_powerupTag)
             {
                 case "HeightPowerup":
-                    _playerMovement.SetJumpForce(_playerMovement.GetJumpForce() * _jumpMulitplier);
+                    _playerMovement.SetJumpForce(_playerMovement.GetJumpForce() * _jumpMultiplier);
                     ManagePowerUpDuration(); //Zet automatisch de juiste duration in _powerupDuration
                     return;
                 case "BombPowerup":
@@ -84,7 +84,7 @@ public class PowerUpHandler : MonoBehaviour
         switch (_powerupTag)
         {
             case "HeightPowerup":
-                _playerMovement.SetJumpForce(_playerMovement.GetJumpForce() / _jumpMulitplier);
+                _playerMovement.SetJumpForce(_playerMovement.GetJumpForce() / _jumpMultiplier);
                 return;
             case "BombPowerup":
                 _bomb.SetBomb(false);
@@ -94,6 +94,6 @@ public class PowerUpHandler : MonoBehaviour
 
     public int GetJumpMultiplier()
     {
-        return _jumpMulitplier;
+        return _jumpMultiplier;
     }
 }

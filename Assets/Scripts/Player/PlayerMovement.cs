@@ -19,13 +19,16 @@ public class PlayerMovement : MonoBehaviour
         _jumpForceMax = _jumpForce * _powerupHandler.GetJumpMultiplier();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {
             _playerRB.AddForce(_jumpForce);
             _isGrounded = false;
         }
+
+        if (!_isGrounded)
+            Physics.gravity += new Vector3(0, -0.5f, 0);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -33,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         if (!_isGrounded && collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
+            Physics.gravity = new Vector3(0, -9.8f, 0);
         }
     }
 

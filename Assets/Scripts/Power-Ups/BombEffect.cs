@@ -10,20 +10,22 @@ public class BombEffect : MonoBehaviour
     [SerializeField] private Vector3 _throwForce; //Gebruik Y en Z waardes
     [SerializeField] private float _blastRadius;
     [SerializeField] private float _fuseTime;
+    private Vector3 _storePosition;
     private float _bombFuse;
     private bool _hasBomb;
     [SerializeField] private GameObject _bomb;
     private Rigidbody _bombRB;
 
-   /* private void Awake()
+    private void Awake()
     {
         if (!_bomb)
             _bomb = GameObject.Find("Bomb");
 
-        //_bombRB = _bomb.GetComponent<Rigidbody>();
+        _bombRB = _bomb.GetComponent<Rigidbody>();
         Physics.IgnoreCollision(_bomb.GetComponent<SphereCollider>(), this.gameObject.GetComponent<BoxCollider>(), true); //Negeer collision tussen de bom en de speler
         _bomb.SetActive(false);
-    } */
+        _storePosition = _bomb.transform.position;
+    }
 
     private void Update()
     {
@@ -74,8 +76,7 @@ public class BombEffect : MonoBehaviour
     private void ResetBomb()
     {
         _bombRB.mass = 1;
-        // Voeg positie toe
-        // _bomb.transform.position = ;
+        _bomb.transform.position = _storePosition;
         _bomb.SetActive(false);
     }
 
