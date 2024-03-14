@@ -8,6 +8,7 @@ TagManager:
   - HeightPowerup
   - BombPowerup
   - Obstacle
+  - Coin
   layers:
   - Default
   - TransparentFX

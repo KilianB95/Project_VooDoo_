@@ -78,15 +78,15 @@ public class PlayerProperties : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-      /*  if (collision.gameObject.CompareTag("Coin"))
-            _collectedCoins++;
+          if (collision.gameObject.CompareTag("Coin"))
+              _collectedCoins++;
 
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            _isAlive = (_hitsToTake > 0);
+          if (collision.gameObject.CompareTag("Obstacle"))
+          {
+              _isAlive = (_hitsToTake > 0);
 
-            if (_hitsToTake > 0)
-                --_hitsToTake;
-        } */
+              if (_hitsToTake > 0)
+                  _hitsToTake--;
+          } 
     }
 }

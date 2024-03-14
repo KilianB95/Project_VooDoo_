@@ -21,9 +21,10 @@ public class ObjectSpawner : MonoBehaviour
         _objectPool = FindObjectOfType<ObjectPooling>();
     }
 
-    // Om de zoveel secondes(kan je zelf instellen hoeveel secondes) spawned hij een obstakel.
+    // Om de zoveel secondes (kan je zelf instellen hoeveel secondes) spawned hij een obstakel.
     private void Update()
     {
+        Debug.Log(_spawnPosition.Length);
         _timeSinceSpawn += Time.deltaTime;
         if(_timeSinceSpawn >= _timeToSpawn)
         {

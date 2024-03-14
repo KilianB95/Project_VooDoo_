@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
 {
-    [SerializeField] private GameObject _obstaclePrefab;
-    [SerializeField] private Queue<GameObject> _obstaclePool = new Queue<GameObject>();
+    [SerializeField] private GameObject _objectPool;
+    [SerializeField] private Queue<GameObject> _objectPooler = new Queue<GameObject>();
     [SerializeField] private int _poolStartSize = 150;  
 
     //Wanneer de game start maakt hij de hoeveelheid objecten aan doormiddel van de _poolStartSize.
@@ -14,8 +14,8 @@ public class ObjectPooling : MonoBehaviour
     {
         for (int i = 0; i < _poolStartSize; i++)
         {
-            GameObject obstacle = Instantiate(_obstaclePrefab);
-            _obstaclePool.Enqueue(obstacle);
+            GameObject obstacle = Instantiate(_objectPool);
+            _objectPooler.Enqueue(obstacle);
             obstacle.SetActive(false);
         }   
     }
@@ -23,16 +23,16 @@ public class ObjectPooling : MonoBehaviour
     // Vanaf hier maakt die de objecten true en spawnen ze in.
     public GameObject GetObstacle()
     {
-        if (_obstaclePool.Count > 0)
+        if (_objectPooler.Count > 0)
         {
-            GameObject obstacle = _obstaclePool.Dequeue();
+            GameObject obstacle = _objectPooler.Dequeue();
             obstacle.SetActive(true);
             return obstacle;
         }
         else 
         {
-            GameObject obstacle = Instantiate(_obstaclePrefab);
-            _obstaclePool.Enqueue(obstacle);
+            GameObject obstacle = Instantiate(_objectPool);
+            _objectPooler.Enqueue(obstacle);
             obstacle.SetActive(true);
             return obstacle;
         }
@@ -41,7 +41,7 @@ public class ObjectPooling : MonoBehaviour
     //Als de object door de destbetreffende collision/collider gaat dan wordt t false en gaat terug in de queue.
     public void ReturnObstacle(GameObject collison)
     {
-        _obstaclePool.Enqueue(collison);
+        _objectPooler.Enqueue(collison);
         collison.SetActive(false);
     }
 }
