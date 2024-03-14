@@ -25,8 +25,8 @@ public class PowerUpHandler : MonoBehaviour
 
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         _bomb = this.gameObject.GetComponent<BombEffect>();
-        _powerupSlider = GameObject.Find("PowerupSlider").GetComponent<Slider>();
-        _powerupSpriteUI = GameObject.Find("CenterArea").GetComponent<Image>();
+        //_powerupSlider = GameObject.Find("PowerupSlider").GetComponent<Slider>();
+        //_powerupSpriteUI = GameObject.Find("CenterArea").GetComponent<Image>();
     }
 
     private void FixedUpdate()
