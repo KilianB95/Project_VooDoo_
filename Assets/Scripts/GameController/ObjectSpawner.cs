@@ -4,39 +4,33 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _obstacle;
+    [SerializeField] private GameObject[] _spawnPosition;
+    private ObjectPooling _objectPool;
 
-    [SerializeField] private float _spawnTimer, _spawnCountDown;
+    [SerializeField] private float _minSpawnTime;
+    [SerializeField] private float _maxSpawnTime;
+    private float _timeToSpawn;
+    private float _timeSinceSpawn;
 
-    //Dit is de countdown voordat er een entitie wordt ingespawned.
     private void Start()
     {
-        _spawnCountDown = _spawnTimer;
+        for (int i = 0; i < _spawnPosition.Length; i++) //Pakt alle objects met de naam "ObjectSpawner0", "ObjectSpawner1", "ObjectSpawner2", etc.
+        {
+            _spawnPosition[i] = GameObject.Find("ObjectSpawner" + i);
+        }
+        _objectPool = FindObjectOfType<ObjectPooling>();
     }
 
-    //Wanneer de countdown 0 is worden de obstacles ingespawned.
-    //Nadat ze ingespawned zijn komen zij op de locatie waar de spawner is ingesteld
+    // Om de zoveel secondes(kan je zelf instellen hoeveel secondes) spawned hij een obstakel.
     private void Update()
     {
-        _spawnCountDown -= Time.deltaTime;
-
-        if(_spawnCountDown < 0)
+        _timeSinceSpawn += Time.deltaTime;
+        if(_timeSinceSpawn >= _timeToSpawn)
         {
-            _spawnCountDown = Time.deltaTime;
-
-            GameObject obstacle = ObjectPool._sharedInstance.GetPooledObjects();
-            if(obstacle != null )
-            {
-                obstacle.transform.position = transform.position;
-                obstacle.transform.rotation = transform.rotation;
-                obstacle.SetActive(true);
-            }
+            GameObject newObstacle = _objectPool.GetObstacle();
+            newObstacle.transform.position = _spawnPosition[Random.Range(0, _spawnPosition.Length)].transform.position;
+            _timeToSpawn = Random.Range(_minSpawnTime, _maxSpawnTime);
+            _timeSinceSpawn = 0f;
         }
-    }
-
-    //Als de obstacle door de collision heeft met de collider wordt het object op false gezet.
-    private void OnCollisionEnter(Collision collision)
-    {
-        gameObject.SetActive(false);
     }
 }
