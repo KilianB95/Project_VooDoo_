@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     //de functie word opgeroepen inde onclick event van de button "Start-Button".
     public void StartGame()
     {
-        SceneManager.LoadScene("TestGameScene");
+        SceneManager.LoadScene("Parallax");
     }
     //deze functie zorgt er voor dat de scene voor de settings geload word.
     //script component zit aan de empty gameobject "MainMenu" gelinkt.
@@ -33,5 +33,10 @@ public class MainMenu : MonoBehaviour
     public void CloseHowToPlay()
     {
         SceneManager.LoadScene("TestMainMenuUI");
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 }
