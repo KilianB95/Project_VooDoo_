@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector3 _jumpForce;
     private Vector3 _jumpForceMax;
     private bool _isGrounded = true;
+    private Animator _animator;
 
     private PowerUpHandler _powerupHandler;
 
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
         _powerupHandler = this.gameObject.GetComponent<PowerUpHandler>();
         _playerRB = this.gameObject.GetComponent<Rigidbody>();
         _jumpForceMax = _jumpForce * _powerupHandler.GetJumpMultiplier();
+        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -25,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
         {
             _playerRB.AddForce(_jumpForce);
             _isGrounded = false;
+            if(_animator != null)
+            {
+                _animator.Play("JumpStart");
+            }
         }
 
         if (!_isGrounded)

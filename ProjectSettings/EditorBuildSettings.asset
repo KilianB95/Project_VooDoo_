@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UIScene/TestHowToPlayScene.unity
     guid: 4a0283ef4beb55f419c07455ec124bab
+  - enabled: 1
+    path: Assets/Scenes/LevelDesign/Parallax.unity
+    guid: f14196d41c76f9647b5ac1a843bffc6b
   m_configObjects: {}

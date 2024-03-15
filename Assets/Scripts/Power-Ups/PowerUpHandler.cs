@@ -10,6 +10,7 @@ public class PowerUpHandler : MonoBehaviour
     [SerializeField] private BombEffect _bomb;
     [SerializeField] private int _jumpMultiplier;
     [SerializeField] private Sprite _powerupNeutralSprite;
+    [SerializeField] private ObjectPooling _bombPoo;
 
     private PowerUp _powerUp;
     private string _powerupTag;
@@ -25,22 +26,27 @@ public class PowerUpHandler : MonoBehaviour
 
         _playerMovement = this.gameObject.GetComponent<PlayerMovement>();
         _bomb = this.gameObject.GetComponent<BombEffect>();
-        //_powerupSlider = GameObject.Find("PowerupSlider").GetComponent<Slider>();
-        //_powerupSpriteUI = GameObject.Find("CenterArea").GetComponent<Image>();
+        _powerupSlider = GameObject.Find("PowerupSlider").GetComponent<Slider>();
+        _powerupSpriteUI = GameObject.Find("CenterArea").GetComponent<Image>();
+
+        _powerupSlider.value = 0;
+        _powerupSlider.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
-
         if (_powerupTimeLeft > 0)
         {
-            Debug.Log(_powerupTimeLeft);
             _powerupTimeLeft -= Time.deltaTime;
             _powerupSlider.value = Mathf.InverseLerp(0, _powerUp.GetDuration(), _powerupTimeLeft);
         }
 
         if (_powerupTimeLeft <= 0 && _powerupActive)
+        {
             ReversePowerUp();
+            _powerupSlider.gameObject.SetActive(false);
+        }
+            
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -55,13 +61,17 @@ public class PowerUpHandler : MonoBehaviour
                 case "HeightPowerup":
                     _playerMovement.SetJumpForce(_playerMovement.GetJumpForce() * _jumpMultiplier);
                     ManagePowerUpDuration(); //Zet automatisch de juiste duration in _powerupDuration
+                    _powerupSlider.gameObject.SetActive(true);
                     return;
                 case "BombPowerup":
                     _bomb.SetBomb(true);
                     ManagePowerUpDuration();
+                    _bombPoo.ReturnObstacle(collision.gameObject);
+                    _powerupSlider.gameObject.SetActive(true);
                     return;
                 case "HitPowerup":
                     _playerProperties.SetHits(1);
+                    _powerupSlider.gameObject.SetActive(true);
                     return;
             }
         }
