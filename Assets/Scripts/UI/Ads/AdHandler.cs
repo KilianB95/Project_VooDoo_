@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class AdScript : MonoBehaviour
+public class AdHandler : MonoBehaviour
 {
     private PlayerProperties _player;
 
@@ -27,19 +28,21 @@ public class AdScript : MonoBehaviour
             _player = GameObject.Find("Player").GetComponent<PlayerProperties>();
 
         if(!_adDurationSlider)
-            _adDurationSlider = GameObject.Find("Slider").GetComponent<Slider>();
+            _adDurationSlider = GameObject.Find("AdSlider").GetComponent<Slider>();
 
         _adActive = false;
         _adTimeLeft = 0;
         _adImageObject.SetActive(false);
+        _adDurationSlider.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
         if (!_player.CheckIfAlive() && !_adActive) //Als speler doodgaat, activeer ad UI element en pak een willekeurige ad sprite
         {
+            _adDurationSlider.gameObject.SetActive(true);
             _adImageObject.SetActive(true);
-            _adImageSprite.sprite = _adImages[Random.Range(0, _adImages.Length + 1)];
+            _adImageSprite.sprite = _adImages[Random.Range(0, _adImages.Length)];
             _adTimeLeft = _adDuration;
             _adActive = true;
         }
@@ -52,9 +55,10 @@ public class AdScript : MonoBehaviour
             
         if (_adTimeLeft < 0 && _adActive) //Wanneer een advertentie actief is en de tijd om is
         {
-            _player.SetIfAlive(true);
+            _adDurationSlider.gameObject.SetActive(false);
             _adImageObject.SetActive(false);
             _adActive = false;
+            SceneManager.LoadScene("TestMainMenuUI");
         }
     }
 }

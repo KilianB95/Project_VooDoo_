@@ -10,6 +10,7 @@ public class PlayerProperties : MonoBehaviour
 {
     [SerializeField] private float _metersPerSecond;
     [SerializeField] private float _timeMultiplier;
+    [SerializeField] private ObjectPooling _coinPool;
     private float _distanceRan;
     private int _collectedCoins;
     private int _hitsToTake;
@@ -78,8 +79,11 @@ public class PlayerProperties : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-          if (collision.gameObject.CompareTag("Coin"))
-              _collectedCoins++;
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            _collectedCoins++;
+            _coinPool.ReturnObstacle(collision.gameObject);
+        }
 
           if (collision.gameObject.CompareTag("Obstacle"))
           {
